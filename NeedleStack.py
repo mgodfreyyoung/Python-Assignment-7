@@ -1,4 +1,4 @@
-testString = '''http://freshsources.com/page5.html">Page 5</a>. And here is a link back to <a href   = "http://freshsources.com/page3.html">Page 3</a>.'''
+testString = '''http://freshsources.com/page5.html">Page 5</a>. And here is a link back to <a HrEf   = "http://freshsources.com/page3.html">Page 3</a>.'''
 
 import urllib
 import re
@@ -10,12 +10,21 @@ def get_page(url):
     
 
 def get_all_links(urlString):
-    urlSet = {}
-    urlSet = set(re.findall(r'href\s*=\s*[\'"]?(\http://[^\'">]+)', urlString)) 
+    urlSet = set()
+    urlList = re.findall(r'href\s*=\s*[\'"]?(\http://[^\'">]+)', urlString,re.IGNORECASE)
+    for x in urlList:
+        urlSet.add(x)
     return urlSet
 
-print get_page('http://freshsources.com/page5.html')   
-urlString = get_page('http://freshsources.com/page5.html')
 
-print get_all_links(urlString)
+def crawl(seed,max_level):
+    index = {}
+    graph = {}
+    urlString = get_page(seed)
+    urlSet = get_all_links(urlString)
+    for x in urlSet:
+        index.add(
+    
 
+
+crawl('http://freshsources.com/page5.html',0)
